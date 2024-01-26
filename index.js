@@ -31,7 +31,7 @@ class Book {
     }
 
     displayInfo() {
-        return `Title: ${this.title}, Author: ${this.author}, ISBN: ${this.ISBN}`;
+        return `{Title: ${this.title}, Author: ${this.author}, ISBN: ${this.ISBN}}`;
     }
 }
 
@@ -46,6 +46,7 @@ class EBook extends Book {
     displayInfo() {
         return `${super.displayInfo()}, File Format: ${this.fileFormat}`;
     }
+
 }
 
 
@@ -71,7 +72,7 @@ class Library {
             if (books.length === 0) {
                 return "The library is empty.";
             } else {
-                return books.map(book => new Book(book.title, book.author, book.ISBN).displayInfo()).join("   |||   ");
+                return books.map(book => new Book(book.title, book.author, book.ISBN).displayInfo()).join(",  ");
             }
         } catch (error) {
             throw new Error(`Failed to display books: ${error.message}`);
@@ -158,6 +159,7 @@ const PORT = process.env.PORT || 3004;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}...`);
 });
+
 
 
 
